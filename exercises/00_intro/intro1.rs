@@ -13,11 +13,11 @@
 // Execute `rustlings hint intro1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// I AM DONE
 
 fn main() {
     println!("Hello and");
-    println!(r#"       welcome to...                      "#);
+    println!(r#"       welcome Sid to...                      "#);
     println!(r#"                 _   _ _                  "#);
     println!(r#"  _ __ _   _ ___| |_| (_)_ __   __ _ ___  "#);
     println!(r#" | '__| | | / __| __| | | '_ \ / _` / __| "#);

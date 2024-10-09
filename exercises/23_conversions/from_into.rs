@@ -24,7 +24,6 @@ impl Default for Person {
     }
 }
 
-
 // Your task is to complete this implementation in order for the line `let p1 =
 // Person::from("Mark,20")` to compile. Please note that you'll need to parse the
 // age component into a `usize` with something like `"4".parse::<usize>()`. The
@@ -41,11 +40,74 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
+// I AM DONE
 
+// Also correct
+// impl From<&str> for Person {
+//     fn from(s: &str) -> Person {
+//         if s.len() == 0 {
+//             return Person::default();
+//         } else {
+//             let parts: Vec<&str> = s.split(",").collect();
+//             if parts.len() < 2 {
+//                 return Person::default();
+//             }
+//             let name: &str = parts[0];
+//             if name.len() == 0 {
+//                 return Person::default();
+//             }
+//             let age = parts[1].parse::<usize>().unwrap_or(0);
+//             if age == 0 {
+//                 return Person::default();
+//             }
+//             return Person {
+//                 name: name.to_string(),
+//                 age: age,
+//             };
+//         }
+//     }
+// }
+
+// Also correct
 impl From<&str> for Person {
-    fn from(s: &str) -> Person {}
+    fn from(s: &str) -> Person {
+        let parts: Vec<&str> = s.split(',').collect();
+        if parts.len() < 2 || parts.len() > 2 {
+            return Person::default();
+        }
+
+        let name = parts[0].trim();
+        let age_str = parts[1].trim();
+
+        if let Ok(age) = age_str.parse::<usize>() {
+            if !name.is_empty() {
+                return Person {
+                    name: String::from(name),
+                    age,
+                };
+            }
+        }
+
+        Person::default()
+    }
 }
+
+// TODO: make it handle "name,age,"
+// impl From<&str> for Person {
+//     fn from(s: &str) -> Self {
+//         let parts = s.split(',').collect::<Vec<&str>>();
+//         match parts[..] {
+//             [name, age] if !name.is_empty() => age
+//                 .parse()
+//                 .map(|age| Self {
+//                     name: name.to_string(),
+//                     age,
+//                 })
+//                 .unwrap_or_default(),
+//             _ => Self::default(),
+//         }
+//     }
+// }
 
 fn main() {
     // Use the `from` function

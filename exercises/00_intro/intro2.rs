@@ -5,8 +5,10 @@
 // Execute `rustlings hint intro2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// I AM DONE
 
 fn main() {
-    printline!("Hello there!")
+    println!("Hello there!");
+    const name: &'static str = "world";
+    println!("Hello {name}!");
 }
